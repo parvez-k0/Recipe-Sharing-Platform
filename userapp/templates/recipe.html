@@ -1,0 +1,43 @@
+{% extends 'parent.html' %}
+
+{% block start %}
+
+
+<div class="col-10 mx-auto">
+  {% csrf_token %}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">S.No.</th>
+        <th scope="col">Recipe Name</th>
+        <th scope="col">Recipe Description</th>
+        <th scope="col">Recipe Image</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for food in foods %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{food.recipe_name}}</td>
+        <td>{{food.recipe_description}}</td>
+       
+          <td>
+            <img src="/media/{{food.recipe_image}}" style="height: 150px; width:150px;">
+          </td>
+       
+        <td class="py2">
+          
+            <a href="#" type="submit" class="btn btn-success">Update</a>
+            <a href="/delete-food/{{food.id}}/" class="btn btn-danger mt-2">Delete</a>
+          
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+  {% endblock %}
